@@ -1,0 +1,127 @@
+<!-- 회원가입 -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/ty_css/signup.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header_logo">
+        <a href="#">
+          <h1>I.O.T.D</h1>
+          <p>I.M.R.M</p>
+        </a>
+      </div>
+    </header>
+
+      <!-- body부분 -->
+       <!-- 이메일 인증 부분 -->
+  <script>
+    function hello() {
+      alert("인증번호를 발송했습니다.");
+    }
+  </script>
+  <!-- 여기까지  -->
+  <body>
+    <div class="container">
+      <div class="signup-form">
+        <form>
+          <h2>SIGN UP</h2>
+          <div class="signup-input-box">
+            <i class="bx bxs-user"></i>
+            <input type="text" name="Nickname" placeholder="Nickname" />
+          </div>
+          <div class="signup-input-box">
+
+
+            <!-- 이메일 인증 부분 -->
+            <i class='bx bx-mail-send' onclick="hello();""></i>
+            <input type="email" name="Email" placeholder="Emai(icon click)" />
+          </div>
+          <!-- 여기까지 -->
+
+<!-- 로그인 박스 -->
+          <div class="signup-input-box">
+            <i class='bx bxs-user-check'></i>
+            <input type="password" name="Password" placeholder="Password" />
+          </div>
+          <div class="signup-input-box">
+            <i class="bx bxs-lock-alt"></i>
+            <input type="password" name="Password" placeholder="Password Check" />
+          </div>
+          <div class="signup-input-box">
+            <i class="bx bxs-lock-alt"></i>
+    <!-- 카테고리  -->
+            <select class="Categories">
+              <option value="">의류</option>
+              <option value="">가방</option>
+              <option value="">신발</option>
+              <option value="">장신구</option>
+              <option value="">기타</option>
+              <option value="">직접입력</option>
+            </select>
+          </div>
+
+          <!-- 로그인 버튼 -->
+          <div class="signup-btn">
+            <input type="submit" class="btn" value="JOIN" />
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- footer부분 -->
+    <footer class="footer">
+      <div class="foottainer">
+        <div class="row">
+          <div class="footer-col">
+            <h4>company</h4>
+            <ul>
+              <li>I.M.R.M</li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>back</h4>
+            <ul>
+              <li>백지현</li>
+              <h5>한거요약</h5>
+            </ul>
+            <ul>
+              <li>윤보영</li>
+              <h5>한거요약</h5>
+            </ul>
+            <ul>
+              <li>정엘리사</li>
+              <h5>한거요약</h5>
+            </ul>
+            <ul>
+              <li>임상빈</li>
+              <h5>Machine Learning</h5>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>front</h4>
+            <ul>
+              <li>김태연</li>
+              <h5>HTML & CSS & JS</h5>
+            </ul>
+            <ul>
+              <li>윤보영</li>
+              <h5>JS</h5>
+            </ul>
+            <ul>
+              <li>백지현</li>
+              <h5>JS</h5>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- JS -->
+    <script></script>
+  </body>
+
+</html>

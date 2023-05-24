@@ -1,0 +1,25 @@
+.header {
+  height: 145px;
+  text-align: center;
+  border-bottom: 2px solid white;
+  padding-bottom: 19px;
+  background-color: rgb(214, 170, 170);
+}
+
+.header_logo h1 {
+  font: bold 40px "arial";
+  padding-top: 40px;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.header_logo p {
+  font: bold 12px "arial";
+  padding-top: 2px;
+  color: white;
+}
+
+.user {
+  float: right;
+}
