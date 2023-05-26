@@ -14,3 +14,15 @@ async function getFollows(e) {
     alert("불러오기 실패!");
   }
 }
+
+// 특정 유저의 프로필 정보 가져오기
+async function getProfile(e) {
+  const response = await fetch(`${backend_base_url}/users/profile/${e}/`);
+
+  if (response.status == 200) {
+    const response_json = await response.json();
+    return response_json;
+  } else {
+    alert("불러오기 실패!");
+  }
+}
