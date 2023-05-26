@@ -27,25 +27,25 @@
           <h2>SIGN UP</h2>
           <div class="signup-input-box">
             <i class="bx bxs-user"></i>
-            <input type="text" name="Nickname" placeholder="Nickname" />
+            <input type="text" name="Nickname" placeholder="Nickname" id="nickname" />
           </div>
           <div class="signup-input-box">
 
 
             <!-- 이메일 인증 부분 -->
             <i class='bx bx-mail-send' onclick="hello();""></i>
-            <input type="email" name="Email" placeholder="Emai(icon click)" />
+            <input type="email" name="Email" placeholder="Email" id="email"/>
           </div>
           <!-- 여기까지 -->
 
-<!-- 로그인 박스 -->
+
           <div class="signup-input-box">
             <i class='bx bxs-user-check'></i>
-            <input type="password" name="Password" placeholder="Password" />
+            <input type="password" name="Password" placeholder="Password" id="password"/>
           </div>
           <div class="signup-input-box">
             <i class="bx bxs-lock-alt"></i>
-            <input type="password" name="Password" placeholder="Password Check" />
+            <input type="password" name="Password" placeholder="Password Check" id="PasswordCheck"/>
           </div>
           <div class="signup-input-box">
             <i class="bx bxs-lock-alt"></i>
@@ -60,9 +60,10 @@
             </select>
           </div>
 
-          <!-- 로그인 버튼 -->
+          <!-- 회원가입 버튼 -->
           <div class="signup-btn">
-            <input type="submit" class="btn" value="JOIN" />
+            <button type="button" onclick="handleSigninButton()" class="btn">JOIN</button>
+            <!-- <input type="submit" class="btn" value="JOIN" /> -->
           </div>
         </form>
       </div>
