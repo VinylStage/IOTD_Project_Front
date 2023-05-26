@@ -1,6 +1,3 @@
-let payload = localStorage.getItem("payload");
-let payload_parse = JSON.parse(payload);
-
 async function handleFeed(e) {
   const postWrap = document.getElementsByClassName("main-posts")[0];
   postWrap.innerHTML = "";
@@ -20,14 +17,15 @@ async function handleFeed(e) {
     if (feed.profile_img) {
       profileImg = `${backend_base_url}${feed.profile_img}`;
     }
+    console.log(feed);
 
     postWrap.insertAdjacentHTML(
       "beforeend",
-      `<div class="post-box" onclick="articleDetail(${feed.id})">
-    <img src="${feedImg}" alt="" />
+      `<div class="post-box">
+    <img src="${feedImg}" onclick="articleDetail(${feed.id})" alt="" />
 
     <div class="post-info">
-      <div class="post-profile">
+      <div class="post-profile" onclick="userProfile(${feed.user})">
         <div class="post-img">
           <img src="${profileImg}" alt="" />
         </div>
