@@ -109,11 +109,10 @@ function checkNotLogin() {
     }
 }
 
-async function createArticle(url){
-    const urlParams = new URLSearchParams(url);
+async function createArticle(){
     const title = document.getElementById("title").value;
     const content = document.getElementById("content").value;
-    const image = document.getElementById("addimage").files[0];
+    const image = document.getElementById("image").files[0];
 
 
     const formdata = new FormData();
@@ -171,3 +170,23 @@ async function handleSignin() {
   return response;
 }
 
+// 게시글 삭제
+async function deleteArticle(url) {
+  const urlParams = new URLSearchParams(url)
+  const articleId = urlParams.get("article_id");
+
+  let token = localStorage.getItem("access")
+  const response = await fetch(`${backend_base_url}/${articleId}/`, {
+    headers: {
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${token}`
+    },
+    method: 'DELETE',
+  })
+
+  if (response.status == 204) {
+    alert("게시글 삭제 완료!")
+    window.location.replace(`${frontend_base_url}/`)
+  } 
+
+}

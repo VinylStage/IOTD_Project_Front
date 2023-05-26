@@ -10,6 +10,20 @@ async function injectHeader() {
   let navbarHtml = await fetch("/nav/header.html");
   let data = await navbarHtml.text();
   document.querySelector("header").innerHTML = data;
+
+  const payload = localStorage.getItem("payload")
+  if (payload) {
+    const payload_parse = JSON.parse(payload)
+
+    const intro = document.getElementById("intro")
+    intro.innerHTML = `${payload_parse.nickname}님`
+
+    loginbutton.style.display = "none";
+  }
+  else {
+    logoutbutton.style.display = "none";
+    myprofilebutton.style.display = "none";
+  }
 }
 
 async function injectFooter() {

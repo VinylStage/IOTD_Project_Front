@@ -3,7 +3,7 @@ async function loadArticles() {
     const articleId = urlParams.get("article_id");
     
     const payload = JSON.parse(localStorage.getItem("payload"));
-    console.log(payload.nickname)
+    
     if (payload) {
         articlewriter = payload.nickname
         console.log(articlewriter)
@@ -23,16 +23,24 @@ async function loadArticles() {
     const articleContent = document.getElementById("content")
     const articleImg = document.getElementById("image")
     const writeImg = document.createElement("img")
-    writeImg.setAttribute("src", `${backend_base_url}${article.image}`)
-    writeImg.setAttribute("style", "width: 50%;")
-    articleImg.appendChild(writeImg)
-
+    
     articleTitle.innerHTML = article.title
     articleNumber.innerHTML = article.id
     articleWriter.innerHTML = article.user
     articleCreateTime.innerHTML = article.created_at.split("T")[0]
     articleLike.innerHTML = article.likes.length
     articleContent.innerHTML = article.content
+
+    if (article.image){
+        writeImg.setAttribute("src", `${backend_base_url}${article.image}`)
+        writeImg.setAttribute("style", "width: 50%;")
+    }
+    else {
+        writeImg.setAttribute("src", "https://cdn11.bigcommerce.com/s-1812kprzl2/images/stencil/original/products/426/5082/no-image__12882.1665668288.jpg?c=2")
+        writeImg.setAttribute("style", "width: 50%;")
+    }
+    articleImg.appendChild(writeImg)
+
 
     const editButton = document.getElementById("editbutton")
     const deleteButton = document.getElementById("deletebutton")
