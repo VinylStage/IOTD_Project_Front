@@ -5,66 +5,84 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>I.O.T.D</title>
     <link rel="stylesheet" href="/static/css/editprofile.css" />
-    <link rel="stylesheet" href="/static/css/nav.css">
+    <link rel="stylesheet" href="/static/css/nav.css" />
   </head>
   <body>
-    <!-- 헤어부분 -->
+    <!-- 헤더부분 -->
     <header class="header"></header>
 
     <!-- 바디부분 -->
     <div class="container">
-        <div class="signup-form">
-          <form>
-            <h2>MY PROFILE</h2>
-            <div class="signup-input-box">
-              <i class="bx bxs-user"></i>
-              <input type="text" name="Nickname" placeholder="IMG Upload" />
-            </div>
-            <div class="signup-input-box">
-  
-  
-              <!-- 이메일 인증 부분 -->
-              <i class='bx bx-mail-send' onclick="hello();"></i>
-              <input type="email" name="Email" placeholder="Nickname" />
-            </div>
-            <!-- 여기까지 -->
-  
-  <!-- 로그인 박스 -->
-            <div class="signup-input-box">
-              <i class='bx bxs-user-check'></i>
-              <input type="email" name="email" placeholder="Email" />
-            </div>
-            <div class="signup-input-box">
-      
-              <input type="password" name="Password" placeholder="Password" />
-            </div>
-            <div class="signup-input-box">
+      <div class="signup-form">
+        <form>
+          <h2>MY PROFILE</h2>
+          <div class="signup-input-box">
+            <i class="bx bxs-user"></i>
+            <input
+              type="image"
+              name="IMG"
+              placeholder="IMG_Upload"
+              id="profileimage"
+            />
+          </div>
+          <div class="signup-input-box">
+            <!-- 이메일 인증 부분 -->
+            <i class="bx bx-mail-send" onclick="hello();"></i>
+            <input
+              type="text"
+              name="nickname"
+              placeholder="Nickname"
+              id="nickname"
+            />
+          </div>
+          <!-- 여기까지 -->
 
-      <!-- 카테고리  -->
-              <select class="Categories">
-                <option value="">의류</option>
-                <option value="">가방</option>
-                <option value="">신발</option>
-                <option value="">장신구</option>
-                <option value="">기타</option>
-                <option value="">직접입력</option>
-              </select>
-            </div>
-  
-            <!-- 로그인 버튼 -->
-            <div class="signup-btn">
-              <input type="submit" class="btn" value="EDIT" />
-            </div>
-          </form>
-        </div>
+          <!-- 로그인 박스 -->
+          <div class="signup-input-box">
+            <i class="bx bxs-user-check"></i>
+            <input type="email" name="email" placeholder="Email" id="email" />
+          </div>
+          <div class="signup-input-box">
+            <input
+              type="password"
+              name="password"
+              placeholder="password"
+              id="password"
+            />
+          </div>
+          <div class="signup-input-box">
+            <!-- 카테고리  -->
+            <select class="Categories">
+              <option value="T-shirt">의류</option>
+              <option value="bag">가방</option>
+              <option value="shoes">신발</option>
+              <option value="access">장신구</option>
+              <option value="others">기타</option>
+              <option value="direct">직접입력</option>
+            </select>
+          </div>
+
+          <!-- 로그인 버튼 -->
+          <div class="signup-btn">
+            <button
+              type="button"
+              onclick="handleUpdateButton()"
+              class="signup"
+              value=""
+            >
+              E D I T
+            </button>
+          </div>
+        </form>
       </div>
-     <!-- footer부분 -->
+    </div>
+    <!-- footer부분 -->
     <footer class="footer"></footer>
-      <!-- JS -->
-      <script src="/static/js/api.js"></script>
-      <script src="/static/js/loader.js"></script>
-      <script src="/static/js/editprofile.js"></script>
+    <!-- JS -->
+    <script src="/static/js/api.js"></script>
+    <script src="/static/js/loader.js"></script>
+    <script src="/static/js/editprofile.js"></script>
   </body>
 </html>

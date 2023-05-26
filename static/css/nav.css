@@ -2,9 +2,9 @@
 .header {
   height: 145px;
   text-align: center;
-  border-bottom: 2px solid white;
+  border-bottom: 2px solid black;
   padding-bottom: 19px;
-  background-color: rgb(214, 170, 170);
+  background-color: white;
 }
 
 .header_logo h1 {
@@ -12,19 +12,18 @@
   padding-top: 40px;
   letter-spacing: 2px;
   margin-bottom: 10px;
-  color: white;
+  color: black;
 }
 
 .header_logo p {
   font: bold 12px "arial";
   padding-top: 2px;
-  color: white;
+  color: black;
 }
 
 .user {
   float: right;
 }
-
 
 /* footer */
 * {
@@ -35,12 +34,14 @@
 
 a {
   text-decoration: none;
-  color: white;
+  color: black;
 }
 
 .foottainer {
   max-width: 1170px;
   margin: auto;
+  padding-top: 50px;
+  border-top: 2px solid black;
   /* width: 600px; */
 }
 
@@ -54,7 +55,7 @@ ul {
 }
 
 .footer {
-  background-color: rgb(214, 170, 170);
+  background-color: white;
   padding: 70px 0;
 }
 
@@ -65,7 +66,7 @@ ul {
 
 .footer-col h4 {
   font-size: 25px;
-  color: #ffffff;
+  color: black;
   text-transform: capitalize;
   margin-bottom: 20px;
   position: relative;
@@ -76,20 +77,20 @@ ul {
   position: absolute;
   left: 0;
   bottom: -10px;
-  background-color: white;
+  background-color: black;
   height: 2px;
   box-sizing: border-box;
   width: 50px;
 }
 
 .footer-col ul li {
-  color: white;
+  color: black;
   font-weight: bold;
   margin-top: 20px;
 }
 
 h5 {
-  color: white;
+  color: black;
 }
 .footer-col ul li:not(:last-child) {
   margin-bottom: 10px;
