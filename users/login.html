@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>로그인</title>
     <link rel="stylesheet" href="/static/css/login.css" />
-    <link rel="stylesheet" href="/static/css/nav.css">
+    <link rel="stylesheet" href="/static/css/nav.css" />
   </head>
   <body>
     <header class="header"></header>
@@ -16,15 +16,20 @@
     <section>
       <div class="form-box">
         <div class="form-value">
-          <form action="">
+          <form>
             <h2>Login</h2>
             <div class="inputbox">
-              <input type="email" required />
-              <label for="">Email</label>
+              <input type="email" id="email" autocomplete="email" required />
+              <label for="email">Email</label>
             </div>
             <div class="inputbox">
-              <input type="password" required />
-              <label for="">password</label>
+              <input
+                type="password"
+                id="password"
+                autocomplete="current-password"
+                required
+              />
+              <label for="password">password</label>
             </div>
             <div class="forget">
               <a href="#" class="find">Find Password</a>
@@ -32,10 +37,10 @@
 
             <!-- 로그인버튼 -->
             <div class="loginbox">
-              <button>Log in</button>
+              <button type="button" onclick="handleLoginButton()">
+                Log in
+              </button>
             </div>
-
-            <a href="/"></a>
           </form>
         </div>
       </div>
