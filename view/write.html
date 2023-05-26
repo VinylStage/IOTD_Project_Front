@@ -22,7 +22,7 @@
       <!-- 글 나오는 부분 -->
       <div class="board_view_wrap">
         <div class="board_view">
-          <input class="title" id="title" placeholder="제목을 입력해주세요">
+          <input type="text" class="title" id="title" placeholder="제목을 입력해주세요">
           <div class="info">
             <dl>
               <dt>글쓴이</dt>
@@ -41,13 +41,12 @@
           <textarea class="cont" id="content" placeholder="내용을 입력해주세요" rows="20"></textarea>
           
         </div>
-        <input type="file" id="addimage">
+        <input type="file" id="image">
       </div>
 
       <!-- 등록버튼 -->
       <div class="bt_wrap">
-        <!-- <a href="#" class="on">목록</a> -->
-        <a href="#" onclick="createArticle(window.location.search)" class="left">작성</a>
+        <a href="#" onclick="createArticle()" class="left">작성</a>
         <!-- <a href="#" class="right">삭제</a> -->
         <!-- <a href="#" class="left">수정</a> -->
       </div>
