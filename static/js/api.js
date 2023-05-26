@@ -1,3 +1,4 @@
+
 const frontend_base_url = "http://127.0.0.1:5500"
 const backend_base_url = "http://127.0.0.1:8000"
 
@@ -112,3 +113,35 @@ async function createArticle(url){
         alert("제목, 내용은 필수항목입니다!")
     }
 }
+
+// 로그아웃
+function handleLogout() {
+  localStorage.removeItem("access");
+  localStorage.removeItem("refresh");
+  localStorage.removeItem("payload");
+  window.location.replace(`${frontend_base_url}/`);
+}
+
+// 회원가입
+async function handleSignin() {
+  const nickname = document.getElementById("nickname").value;
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+  const passwordCheck = document.getElementById("PasswordCheck").value;
+
+  const response = await fetch(`${backend_base_url}/users/signup/`, {
+    headers: {
+      "content-type": "application/json",
+    },
+    method: "POST",
+    body: JSON.stringify({
+      nickname: nickname,
+      email: email,
+      password: password,
+      PasswordCheck: passwordCheck,
+    }),
+  });
+
+  return response;
+}
+
