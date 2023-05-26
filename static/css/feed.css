@@ -75,18 +75,16 @@ body {
   font-weight: bold;
 }
 
-.feed-text {
-  display: flex;
-  align-items: center;
-  font-size: 30px;
-  font-weight: bold;
-}
+#follow-btn,
+#like-btn {
+  border: solid white;
+  background-color: rgb(214, 170, 170);
+  border-radius: 2px;
+  border-width: 2px;
+  font-size: 20px;
 
-.feed-text h2 {
-  font-size: 1rem;
-  margin-right: 10px;
-  font-size: 30px;
-  font-weight: bold;
+  padding: 5px;
+  margin: 5px;
 }
 
 .main-posts {
@@ -94,13 +92,15 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(300px, auto));
   justify-content: center;
   gap: 11px;
+  width: 1000px;
+  margin: auto;
 }
 
 .post-box {
   width: 300px;
   display: inline-block;
   justify-content: center;
-  margin-left: 80px;
+  padding: 10px;
   margin-bottom: 80px;
 }
 
