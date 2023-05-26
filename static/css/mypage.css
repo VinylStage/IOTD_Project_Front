@@ -94,13 +94,49 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(300px, auto));
   justify-content: center;
   gap: 11px;
+  width: 1000px;
+  margin: auto;
+}
+
+#profile-box {
+  border: solid white;
+  width: 500px;
+  margin: 50px auto 50px auto;
+  border-radius: 5px;
+  text-align: center;
+  padding: 30px;
+}
+
+#profile-img {
+  width: 200px;
+  height: 200px;
+  display: block;
+  object-fit: cover;
+  margin: auto;
+  padding: 20px;
+}
+
+#profile-fashion {
+  margin-bottom: 20px;
+}
+
+#profile-follower,
+#profile-following {
+  border: solid white;
+  background-color: white;
+  color: rgb(214, 170, 170);
+  text-decoration: solid;
+  font-weight: bold;
+
+  padding: 5px;
+  display: inline-block;
 }
 
 .post-box {
   width: 300px;
   display: inline-block;
   justify-content: center;
-  margin-left: 80px;
+  padding: 10px;
   margin-bottom: 80px;
 }
 
