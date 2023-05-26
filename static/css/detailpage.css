@@ -3,21 +3,21 @@
   padding: 0;
   list-style: none;
   text-decoration: none;
-  color: white;
+  /* color: white; */
 }
 
-body {
+/* body {
   background-color: rgb(214, 170, 170);
   background-position: center;
   background-size: cover;
   min-height: 100vh;
   width: 100%;
-}
+} */
 
 .header {
   height: 145px;
   text-align: center;
-  border-bottom: 2px solid white;
+  border-bottom: 2px solid black;
   padding-bottom: 19px;
 }
 
@@ -45,15 +45,15 @@ body {
 .header__gnb ul li a {
   display: block;
   font: bold 14px "arial";
-  color: white;
+  color: black;
   margin: 0px 16px;
   letter-spacing: 1px;
 }
 
-.user {
+/* .user {
   float: right;
   margin-right: 95px;
-}
+} */
 
 /* 게시판부분 */
 
@@ -102,7 +102,7 @@ a {
   min-width: 80px;
   margin-left: 10px;
   padding: 10px;
-  border: 1px solid white;
+  border: 1px solid black;
   border-radius: 2px;
   font-size: 1.2rem;
   margin-bottom: 150px;
@@ -113,8 +113,8 @@ a {
 }
 
 .bt_wrap a.on {
-  background-color: white;
-  color: black;
+  background-color: black;
+  color: white;
   font-weight: bold;
   float: left;
 }
@@ -125,13 +125,13 @@ a {
 
 .bt_wrap a.right {
   float: right;
-  background-color: white;
-  color: black;
+  background-color: black;
+  color: white;
   font-weight: bold;
 }
 
 .board_view > div.top {
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid black;
 }
 
 .board_view > div:last-child {
@@ -190,7 +190,7 @@ a {
   height: 32px;
   box-sizing: border-box;
   vertical-align: middle;
-  border: 2px solid white;
+  border: 2px solid black;
   border-left: 0;
   line-height: 100%;
 }
@@ -207,29 +207,29 @@ a {
 }
 
 .board_page a.num.on {
-  border-color: gray;
-  background-color: gray;
+  border-color: black;
+  background-color: black;
 }
 
 .board_page a:first-child {
-  border-left: 2px solid white;
+  border-left: 2px solid black;
 }
 
 /* view  부분 */
 .board_view {
   width: 100%;
-  border-top: 2px solid white;
+  border-top: 2px solid black;
 }
 
 .board_view .title {
   padding: 20px 15px;
-  border-bottom: 1px dashed white;
+  border-bottom: 1px dashed black;
   font-size: 2rem;
 }
 
 .board_view .info {
   padding: 15px;
-  border-bottom: 2px solid white;
+  border-bottom: 2px solid black;
   font-size: 0;
 }
 
@@ -251,7 +251,7 @@ a {
   left: 0;
   display: block;
   height: 13px;
-  background: white;
+  background: black;
 }
 
 .board_view .info dl:first-child::before {
@@ -270,7 +270,7 @@ a {
 
 .board_view .cont {
   padding: 15px;
-  border-bottom: 2px solid white;
+  border-bottom: 2px solid black;
   line-height: 160%;
   font-size: 1.4rem;
 }
@@ -278,7 +278,7 @@ a {
 /* 댓글  css */
 .container {
   width: 98%;
-  border: 3px solid white;
+  border: 3px solid black;
   padding: 15px 10px;
   margin-top: 100px;
 }
@@ -286,7 +286,7 @@ a {
 .container h2 {
   margin-top: 10px;
   margin-left: 10px;
-  color: white;
+  color: black;
   font-size: 30px;
 }
 
@@ -295,7 +295,7 @@ textarea {
   height: 10px;
   width: 100%;
   border: none;
-  border-bottom: 2px solid white;
+  border-bottom: 2px solid black;
   background-color: transparent;
   margin-bottom: 10px;
   padding: 10px;
@@ -314,20 +314,20 @@ button {
   text-transform: uppercase;
   font-weight: bold;
   cursor: pointer;
-  border: 2px solid white;
+  border: 2px solid black;
   width: 90px;
   height: 40px;
 }
 
 input[type="submit"] {
-  color: black;
-  background-color: white;
+  color: white;
+  background-color: black;
   margin-left: 780px;
 }
 
 button {
-  color: white;
-  border: 1px solid white;
+  color: black;
+  border: 1px solid blacke;
   background-color: transparent;
 }
 

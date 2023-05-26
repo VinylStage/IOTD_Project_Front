@@ -9,18 +9,17 @@ async function injectHeader() {
 
   let navbarHtml = await fetch("/nav/header.html");
   let data = await navbarHtml.text();
-  document.querySelector("header").innerHTML = data;
+  document.querySelector("header").innerHTML = data; //사용자님이 이거니?
 
-  const payload = localStorage.getItem("payload")
+  const payload = localStorage.getItem("payload");
   if (payload) {
-    const payload_parse = JSON.parse(payload)
+    const payload_parse = JSON.parse(payload);
 
-    const intro = document.getElementById("intro")
-    intro.innerHTML = `${payload_parse.nickname}님`
+    const intro = document.getElementById("intro");
+    intro.innerHTML = `${payload_parse.nickname}님`;
 
     loginbutton.style.display = "none";
-  }
-  else {
+  } else {
     logoutbutton.style.display = "none";
     myprofilebutton.style.display = "none";
   }
@@ -43,11 +42,8 @@ async function injectFooter() {
 injectHeader();
 injectFooter();
 
-
-
-function articleList(articles, article_list){
-  
-  articles.forEach(article => {
+function articleList(articles, article_list) {
+  articles.forEach((article) => {
     // const newDiv = document.createElement("div");
     // newDiv.setAttribute("class", "post-box")
     // newDiv.setAttribute("onclick", `articleDetail(${article.id})`)
@@ -112,9 +108,9 @@ function articleList(articles, article_list){
           <i class="ri-bookmark-fill"></i>
         </div>
       </div>
-    </div>`)
-    }
-    else {
+    </div>`
+      );
+    } else {
       article_list.insertAdjacentHTML(
         "beforeend",
         `<div class="post-box" onclick="articleDetail(${article.id})">
@@ -133,11 +129,12 @@ function articleList(articles, article_list){
           <i class="ri-bookmark-fill"></i>
         </div>
       </div>
-    </div>`)
+    </div>`
+      );
     }
-})
+  });
 }
 
 function articleDetail(article_id) {
-  window.location.href = `${frontend_base_url}/view/detailpage.html?article_id=${article_id}`
+  window.location.href = `${frontend_base_url}/view/detailpage.html?article_id=${article_id}`;
 }
