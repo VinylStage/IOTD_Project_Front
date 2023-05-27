@@ -20,12 +20,7 @@
           <h2>MY PROFILE</h2>
           <div class="signup-input-box">
             <i class="bx bxs-user"></i>
-            <input
-              type="image"
-              name="IMG"
-              placeholder="IMG_Upload"
-              id="profileimage"
-            />
+            <input type="file" id="profileimage" />
           </div>
           <div class="signup-input-box">
             <!-- 이메일 인증 부분 -->
@@ -42,7 +37,13 @@
           <!-- 로그인 박스 -->
           <div class="signup-input-box">
             <i class="bx bxs-user-check"></i>
-            <input type="email" name="email" placeholder="Email" id="email" />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              id="email"
+              disabled
+            />
           </div>
           <div class="signup-input-box">
             <input
@@ -55,12 +56,12 @@
           <div class="signup-input-box">
             <!-- 카테고리  -->
             <select class="Categories">
-              <option value="T-shirt">의류</option>
-              <option value="bag">가방</option>
-              <option value="shoes">신발</option>
-              <option value="access">장신구</option>
-              <option value="others">기타</option>
-              <option value="direct">직접입력</option>
+              <option value="CASUAL">캐쥬얼</option>
+              <option value="STREET">스트릿</option>
+              <option value="FORMAL">포멀</option>
+              <option value="RETRO">레트로</option>
+              <option value="ATHLEISURE">애슬레저</option>
+              <option value="FUNK">펑크</option>
             </select>
           </div>
 
@@ -79,7 +80,9 @@
       </div>
     </div>
     <div>
-      <button type="button" onclick="" class="withdrawal">회원탈퇴</button>
+      <button type="button" onclick="checkPassword()" class="withdrawal">
+        회원탈퇴
+      </button>
     </div>
 
     <!-- footer부분 -->

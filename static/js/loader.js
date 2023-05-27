@@ -18,6 +18,10 @@ async function injectHeader() {
     const intro = document.getElementById("intro");
     intro.innerHTML = `${payload_parse.nickname}님`;
 
+    document
+      .getElementById("my-page")
+      .setAttribute("onclick", `userProfile(${payload_parse.user_id})`);
+
     loginbutton.style.display = "none";
   } else {
     logoutbutton.style.display = "none";
@@ -44,19 +48,25 @@ injectFooter();
 
 function articleList(articles, article_list) {
   articles.forEach((article) => {
+    let articleImg = `${no_image}`;
     if (article.image) {
-      article_list.insertAdjacentHTML(
-        "beforeend",
-        `<div class="post-box" onclick="articleDetail(${article.id})">
-  
-      <img src="${backend_base_url}${article.image}" alt="" />
-  
+      articleImg = `${backend_base_url}${article.image}`;
+    }
+
+    let profileImg = `${no_image}`;
+    if (article.profile_img) {
+      profileImg = `${backend_base_url}${article.profile_img}`;
+    }
+    article_list.insertAdjacentHTML(
+      "beforeend",
+      `<div class="post-box">
+      <img src="${articleImg}" onclick="articleDetail(${article.id})" alt="" />
       <div class="post-info">
-        <div class="post-profile">
+        <div class="post-profile" onclick="userProfile(${article.user})">
           <div class="post-img">
-            <img src="/static/img/mymymy.png" alt="" />
+            <img src="${profileImg}" alt="" />
           </div>
-          <h3>${article.user}</h3>
+          <h3>${article.nickname}</h3>
         </div>
         <div class="likes">
           <i class="ri-heart-3-fill" ></i>
@@ -64,29 +74,7 @@ function articleList(articles, article_list) {
         </div>
       </div>
     </div>`
-      );
-    } else {
-      article_list.insertAdjacentHTML(
-        "beforeend",
-        `<div class="post-box" onclick="articleDetail(${article.id})">
-  
-      <img src="https://cdn11.bigcommerce.com/s-1812kprzl2/images/stencil/original/products/426/5082/no-image__12882.1665668288.jpg?c=2" alt="" />
-  
-      <div class="post-info">
-        <div class="post-profile">
-          <div class="post-img">
-            <img src="/static/img/mymymy.png" alt="" />
-          </div>
-          <h3>${article.user}</h3>
-        </div>
-        <div class="likes">
-          <i class="ri-heart-3-fill"></i>
-          <i class="ri-bookmark-fill"></i>
-        </div>
-      </div>
-    </div>`
-      );
-    }
+    );
   });
 }
 
@@ -104,4 +92,16 @@ function moveFollow(user_id) {
 
 function profileEdit() {
   window.location.href = `${frontend_base_url}/users/editprofile.html`;
+}
+
+function findPassword() {
+  window.location.href = `${frontend_base_url}/users/password.html`;
+}
+
+function moveSignin() {
+  window.location.href = `${frontend_base_url}/users/signup.html`;
+}
+
+function checkPassword() {
+  window.location.href = `${frontend_base_url}/users/checkpassword.html`;
 }

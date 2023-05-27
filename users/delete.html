@@ -15,19 +15,18 @@
     <section>
       <div class="form-box">
         <div class="form-value">
-          <form action="">
-            <h2>Check Password</h2>
+          <form>
+            <h2>User delete</h2>
             <div class="inputbox">
-              <input type="password" required />
-              <label for="">Password</label>
+              <input id="sure-box" type="text" required />
+              <label for="">Are you sure? type "yes"</label>
             </div>
-
             <!-- 로그인버튼 -->
             <div class="loginbox">
-              <button>Click!</button>
+              <button type="button" id="delete-btn" onclick="handleDelete()">
+                Delete
+              </button>
             </div>
-
-            <a href="/"></a>
           </form>
         </div>
       </div>
@@ -39,6 +38,6 @@
     <!-- JS -->
     <script src="/static/js/api.js"></script>
     <script src="/static/js/loader.js"></script>
-    <script src="/static/js/password.js"></script>
+    <script src="/static/js/delete.js"></script>
   </body>
 </html>
