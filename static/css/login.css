@@ -74,8 +74,19 @@ input:focus ~ label,          /* email,password hover */
 .find {
   color: black;
   font-weight: bold;
+  border: none;
+  background-color: white;
 }
-button {
+
+.join {
+  color: black;
+  font-weight: bold;
+  border: none;
+  float: right;
+  background-color: white;
+}
+/* 로그인 버튼 */
+.login {
   width: 100%;
   height: 40px;
   border: 2px solid black;
@@ -86,7 +97,7 @@ button {
   font-size: 1em;
   font-weight: 600;
   margin-bottom: 10px;
-  margin-top: 30px;
+  margin-top: 50px;
 }
 
 .register p a {
