@@ -55,6 +55,89 @@ async function loadArticles() {
 
 }
 
+
+
+function updatebutton(url) {
+    const urlParams = new URLSearchParams(url);
+    const article_id = urlParams.get("article_id");
+    window.location.href = `${frontend_base_url}/view/write.html?article_id=${article_id}`
+}
+
+// 댓글 작성
+async function commentWrite() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const articleId = urlParams.get("article_id");
+    const commentValue = document.getElementById("commentvalue").value
+
+    let token = localStorage.getItem("access")
+
+    const response = await fetch(`${backend_base_url}/${articleId}/comments/`, {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json',
+            "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify({
+            "content": commentValue,
+        })
+    })
+
+    if (response.status == 201) {
+        window.location.replace(`${frontend_base_url}/view/detailpage.html?article_id=${articleId}`)
+    } else if (response.status == 401) {
+        alert("로그인한 사용자만 댓글을 등록할 수 있습니다")
+    } 
+}
+
+// 댓글 로드
+async function loadComment() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const articleId = urlParams.get("article_id");
+
+    const response = await fetch(`${backend_base_url}/${articleId}/comments/`)
+
+    const response_json = await response.json()
+    console.log(response_json)
+
+
+    const payload = JSON.parse(localStorage.getItem("payload"));
+    if (payload) {
+        commentWriter = payload.nickname
+        console.log(commentWriter)
+    }
+    else {
+        commentWriter = null
+    }
+
+    const commentContainer = document.getElementById("comments-list")
+    
+    
+    
+    response_json.forEach((comment) => {
+        
+        let button = ''
+        if (commentWriter == comment.user) {
+            button = `
+            <div class="bt_wrap">
+                <a class="right" id="commentDelete" onclick="deleteComment(${comment.id})">삭제</a>
+                <a class="left" id="commentUpdate" onclick="updateComment(${comment.id}, '${comment.content}')">수정</a>
+            </div>
+            `
+        } 
+        commentContainer.insertAdjacentHTML(
+            "beforeend",
+            `
+            <form>
+                <textarea placeholder="Add Yor Comment" id="commentvalue">${comment.content}</textarea>
+                ${button}
+            </form>
+            `
+        )
+        
+        
+    })
+}
+
 window.onload = async function () {
     const urlParams = new URLSearchParams(window.location.search);
     const articleId = urlParams.get("article_id");
@@ -62,4 +145,5 @@ window.onload = async function () {
     const article = await getArticle(articleId);
 
     await loadArticles(articleId);
+    await loadComment()
 }

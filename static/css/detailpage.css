@@ -105,7 +105,7 @@ a {
   border: 1px solid black;
   border-radius: 2px;
   font-size: 1.2rem;
-  margin-bottom: 150px;
+  margin-bottom: 20px;
 }
 
 .bt_wrap a:first-child {
@@ -278,8 +278,8 @@ a {
 /* 댓글  css */
 .container {
   width: 98%;
-  border: 3px solid black;
-  padding: 15px 10px;
+  border: 3px solid white;
+  padding: 30px 10px 60px;
   margin-top: 100px;
 }
 
@@ -292,7 +292,7 @@ a {
 
 /* 댓글 입력하는 부분 */
 textarea {
-  height: 10px;
+  height: 35px;
   width: 100%;
   border: none;
   border-bottom: 2px solid black;
