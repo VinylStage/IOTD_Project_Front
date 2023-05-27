@@ -4,11 +4,9 @@
   list-style: none;
   box-sizing: border-box;
   text-decoration: none;
-  color: white;
 }
 
 body {
-  background-color: rgb(214, 170, 170);
   background-position: center;
   background-size: cover;
   min-height: 100vh;
@@ -18,7 +16,7 @@ body {
 .header {
   height: 145px;
   text-align: center;
-  border-bottom: 1px solid #e5e1e1;
+  border-bottom: 1px solid black;
   padding-bottom: 19px;
 }
 
@@ -46,18 +44,14 @@ body {
 .header__gnb ul li a {
   display: block;
   font: bold 14px "arial";
-  color: #e5e1e1;
+  color: black;
   margin: 0px 16px;
   letter-spacing: 1px;
 }
 
-.user {
+/* .user {
   float: right;
-}
-
-body {
-  background-color: rgb(214, 170, 170);
-}
+} */
 
 /* 피드 */
 .feed {
@@ -125,7 +119,7 @@ body {
   justify-content: center;
   width: 35px;
   height: 35px;
-  border: 2px solid white;
+  border: 2px solid black;
   border-radius: 50%;
 }
 
@@ -186,8 +180,7 @@ ul {
   padding: 70px 0;
   border-top: 2px solid white;
 }
-
-.footer-col {
+*/ .footer-col {
   width: 25%;
   padding: 0 15px;
 }

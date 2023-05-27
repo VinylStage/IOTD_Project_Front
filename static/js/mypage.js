@@ -1,7 +1,17 @@
+const urlParams = new URLSearchParams(window.location.search);
+const userId = urlParams.get("user_id");
+
 window.onload = async function () {
+  // 로그인 한 경우 edit 띄워주기
+  if (payload_parse.user_id == userId) {
+    document.getElementsByClassName(
+      "feed-text"
+    )[0].innerHTML = `<h2><a onclick="profileEdit()">Edit</a></h2>`;
+  }
+
   // 유저의 프로필을 받아옴
   // 이후 쿼리문에서 받아올 수 있게 수정
-  const profile = await getProfile(1);
+  const profile = await getProfile(userId);
   console.log(profile);
 
   //   닉네임
@@ -18,25 +28,27 @@ window.onload = async function () {
     "profile-fashion"
   ).innerText = `Fashion : ${profile.fashion}`;
   // 팔로워
-  document.getElementById(
-    "profile-follower"
-  ).innerText = `Follower ${profile.followers_count}`;
+  const follower = document.getElementById("profile-follower");
+  follower.innerText = `Follower ${profile.followers.length}`;
+  follower.setAttribute("onclick", `moveFollow(${userId})`);
   // 팔로잉
-  document.getElementById(
-    "profile-following"
-  ).innerText = `Following ${profile.followings_count}`;
+  const following = document.getElementById("profile-following");
+  following.innerText = `Following ${profile.followings.length}`;
+  following.setAttribute("onclick", `moveFollow(${userId})`);
 
   // 유저 게시글 부분
   const postBox = document.getElementsByClassName("main-posts")[0];
   postBox.innerHTML = "";
-  profile.articles.forEach((article) => {
-    let articleImg = `${no_image}`;
-    if (article.img) {
-      articleImg = `${backend_base_url}${user.profile_img}`;
-    }
-    postBox.insertAdjacentHTML(
-      "beforeend",
-      `<div class="post-box">
+  console.log(profile);
+  if (profile.articles) {
+    profile.articles.forEach((article) => {
+      let articleImg = `${no_image}`;
+      if (article.image) {
+        articleImg = `${backend_base_url}${article.image}`;
+      }
+      postBox.insertAdjacentHTML(
+        "beforeend",
+        `<div class="post-box" onclick="articleDetail(${article.id})">
     <img src="${articleImg}" alt="" />
 
     <div class="post-info">
@@ -54,6 +66,9 @@ window.onload = async function () {
       </div>
     </div>
   </div>`
-    );
-  });
+      );
+    });
+  } else {
+    postBox.innerHTML = "No articles available";
+  }
 };
