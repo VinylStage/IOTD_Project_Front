@@ -6,53 +6,6 @@
   color: black;
 }
 
-body {
-  background-position: center;
-  background-size: cover;
-  min-height: 100vh;
-  width: 100%;
-}
-
-.header {
-  height: 145px;
-  text-align: center;
-  border-bottom: 1px solid black;
-  padding-bottom: 19px;
-}
-
-.header_logo h1 {
-  font: bold 40px "arial";
-  padding-top: 14px;
-  letter-spacing: 2px;
-  margin-top: 20px;
-  margin-bottom: 10px;
-}
-
-.header_logo p {
-  font: bold 12px "arial";
-  margin-top: -1px;
-}
-
-.header__gnb ul {
-  margin-top: 39px;
-}
-
-.header__gnb ul li {
-  display: inline-block;
-}
-
-.header__gnb ul li a {
-  display: block;
-  font: bold 14px "arial";
-  color: black;
-  margin: 0px 16px;
-  letter-spacing: 1px;
-}
-/* 
-.user {
-  float: right;
-} */
-
 .container {
   display: flex;
   justify-content: center;
@@ -155,4 +108,13 @@ input::placeholder {
   font-weight: 600;
   position: relative;
   top: 25px;
+}
+
+.withdrawal {
+  border: none;
+  border-bottom: 2px solid black;
+  margin-left: 1100px;
+  background-color: white;
+  font-size: 15px;
+  font-weight: bold;
 }
