@@ -8,6 +8,7 @@
     <title>게시글보기</title>
     <link rel="stylesheet" href="/static/css/detailpage.css" />
     <link rel="stylesheet" href="/static/css/nav.css">
+    
   </head>
 
   <body>
@@ -53,19 +54,21 @@
         <!-- 목록버튼 -->
           <div class="bt_wrap">
             <a href="/" class="on">목록</a>
-            <a  class="right" id="deletebutton" onclick="deleteArticle(window.location.search)">삭제</a>
-            <a href="#" class="left" id="editbutton">수정</a>
+            <a class="right" id="deletebutton" onclick="deleteArticle(window.location.search)">삭제</a>
+            <a class="left" id="editbutton" onclick="updatebutton(window.location.search)">수정</a>
 
           </div>
           <!-- 댓글 html -->
           <div class="container">
             <h2>Comment</h2>
-            <form>
-              <textarea placeholder="Add Yor Comment"></textarea>
-              <div class="comment_btn">
-                <input type="submit" value="등록" />
-                <button id="clear">취소</button>
+            <form id="loadcomments">
+              <textarea placeholder="Add Yor Comment" id="commentvalue"></textarea>
+              <div class="bt_wrap">
+                <a class="left" id="commentWrite" onclick="commentWrite()">등록</a>
               </div>
+              <div>
+                <ul id="comments-list"></ul>
+            </div>
             </form>
           </div>
       </div>
