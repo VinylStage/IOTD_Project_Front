@@ -15,44 +15,51 @@ window.onload = async function () {
 
   const myprofile_response = await my_profile_edit.json();
 
-  console.log(myprofile_response);
-  const profile_image = document.getElementById("profileimage");
-  profile_image.setAttribute("value", `${myprofile_response.profileimage}`);
   const profile_nickname = document.getElementById("nickname");
   profile_nickname.setAttribute("value", `${myprofile_response.nickname}`);
   const profile_email = document.getElementById("email");
   profile_email.setAttribute("value", `${myprofile_response.email}`);
-  const profile_password = document.getElementById("password");
-  profile_password.setAttribute("value", `${myprofile_response.password}`);
+  const profile_fashion = document.getElementsByClassName("Categories")[0];
+  profile_fashion.value = myprofile_response.fashion;
 };
 
 async function handleUpdateButton() {
   const payload = localStorage.getItem("payload");
   const payload_parse = JSON.parse(payload);
   let token = localStorage.getItem("access");
-  console.log(payload_parse.user_id);
 
-  const profileimage = document.getElementById("profileimage").value;
-  console.log(profileimage);
+  const profileimage = document.getElementById("profileimage").files[0];
   const nickname = document.getElementById("nickname").value;
-  console.log(nickname);
   const email = document.getElementById("email").value;
-  console.log(email);
   const password = document.getElementById("password").value;
-  console.log(password);
+  const fashion = document.getElementsByClassName("Categories")[0].value;
 
-  const my_profile_modify = await fetch(`${backend_base_url}/users/profile/`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-    },
-    method: "PUT",
-    body: JSON.stringify({
-      profileimage: profileimage,
-      nickname: nickname,
-      email: email,
-      password: password,
-    }),
-  });
-  window.location.replace(`${frontend_base_url}/users/mypage.html`);
+  console.log(fashion);
+
+  const formdata = new FormData();
+
+  formdata.append("nickname", nickname);
+  formdata.append("email", email);
+  if (password) {
+    formdata.append("password", password);
+  }
+  if (profileimage) {
+    formdata.append("profile_img", profileimage || "");
+  }
+  formdata.append("fashion", fashion);
+
+  const response = await fetch(
+    `${backend_base_url}/users/profile/${payload_parse.user_id}/`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      method: "PUT",
+      body: formdata,
+    }
+  );
+  if (response.status == 200) {
+    alert("프로필 업데이트 완료!");
+    userProfile(payload_parse.user_id);
+  }
 }

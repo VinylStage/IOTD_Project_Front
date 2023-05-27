@@ -1,4 +1,4 @@
-const frontend_base_url = "http://127.0.0.1:5500";
+const frontend_base_url = "http://127.0.0.1:5501";
 const backend_base_url = "http://127.0.0.1:8000";
 const no_image =
   "https://usagi-post.com/wp-content/uploads/2020/05/no-image-found-360x250-1.png";
@@ -21,6 +21,7 @@ async function getFollows(e) {
 
 // 특정 유저의 프로필 정보 가져오기
 async function getProfile(e) {
+  console.log(e);
   const response = await fetch(`${backend_base_url}/users/profile/${e}/`);
 
   if (response.status == 200) {
@@ -70,6 +71,48 @@ async function handleLogin() {
   return response;
 }
 
+// 회원 탈퇴
+async function deleteUser() {
+  const response = await fetch(
+    `${backend_base_url}/users/profile/${payload_parse.user_id}/`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      method: "DELETE",
+    }
+  );
+
+  if (response.status == 204) {
+    alert("회원 탈퇴에 성공했습니다.");
+    handleLogout();
+    window.location.replace(`${frontend_base_url}`);
+  }
+}
+
+// 패스워드 변경 이메일 전송
+async function changePassword() {
+  const email = document.getElementById("email").value;
+
+  const response = await fetch(`${backend_base_url}/users/password/`, {
+    headers: {
+      "content-type": "application/json",
+    },
+    method: "PUT",
+    body: JSON.stringify({
+      email: email,
+    }),
+  });
+
+  if (response.status == 200) {
+    alert("비밀번호 변경 이메일을 발송했습니다!");
+    window.location.replace(`${frontend_base_url}/users/login.html`);
+  } else {
+    alert("이메일 발송에 실패했습니다.");
+  }
+}
+
+// 전체 게시글 들고오기
 async function getAllArticles() {
   const response = await fetch(`${backend_base_url}/`);
 
@@ -132,11 +175,10 @@ function checkNotLogin() {
 }
 
 // 게시글 작성
-async function createArticle(){
-    const title = document.getElementById("title").value;
-    const content = document.getElementById("content").value;
-    const image = document.getElementById("image").files[0];
-
+async function createArticle() {
+  const title = document.getElementById("title").value;
+  const content = document.getElementById("content").value;
+  const image = document.getElementById("image").files[0];
 
   const formdata = new FormData();
 
@@ -154,47 +196,46 @@ async function createArticle(){
     body: formdata,
   });
 
-    if (response.status == 201) {
-        alert("게시글 작성 완료!")
-        window.location.replace(`${frontend_base_url}/`);
-    } 
-    else {
-        alert("제목, 내용은 필수항목입니다!")
-    }
-
+  if (response.status == 201) {
+    alert("게시글 작성 완료!");
+    window.location.replace(`${frontend_base_url}/`);
+  } else {
+    alert("제목, 내용은 필수항목입니다!");
+  }
 }
 
 // 게시글 수정
 async function updateArticle(url) {
-  const urlParams = new URLSearchParams(url)
+  const urlParams = new URLSearchParams(url);
   const articleId = urlParams.get("article_id");
 
   const title = document.getElementById("title").value;
   const content = document.getElementById("content").value;
   const image = document.getElementById("image").files[0];
 
-
   const formdata = new FormData();
 
-  formdata.append("title", title)
-  formdata.append("content", content)
-  formdata.append("image", image || '')
+  formdata.append("title", title);
+  formdata.append("content", content);
+  formdata.append("image", image || "");
 
-  let token = localStorage.getItem("access")
+  let token = localStorage.getItem("access");
 
   const response = await fetch(`${backend_base_url}/${articleId}/`, {
-      method: "PUT",
-      headers: {
-          "Authorization": `Bearer ${token}`
-      },
-      body: formdata
-  })
-  console.log(response)
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    body: formdata,
+  });
+  console.log(response);
   if (response.status == 200) {
-      alert("게시글 수정 완료!")
-      window.location.replace(`${frontend_base_url}/view/detailpage.html?article_id=${articleId}`);
+    alert("게시글 수정 완료!");
+    window.location.replace(
+      `${frontend_base_url}/view/detailpage.html?article_id=${articleId}`
+    );
   } else {
-      alert("제목, 내용은 필수항목입니다!")
+    alert("제목, 내용은 필수항목입니다!");
   }
 }
 
@@ -212,21 +253,24 @@ async function handleSignin() {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
   const passwordCheck = document.getElementById("PasswordCheck").value;
-
-  const response = await fetch(`${backend_base_url}/users/signup/`, {
-    headers: {
-      "content-type": "application/json",
-    },
-    method: "POST",
-    body: JSON.stringify({
-      nickname: nickname,
-      email: email,
-      password: password,
-      PasswordCheck: passwordCheck,
-    }),
-  });
-
-  return response;
+  const fashion = document.getElementsByClassName("Categories").value;
+  if (password == passwordCheck) {
+    const response = await fetch(`${backend_base_url}/users/signup/`, {
+      headers: {
+        "content-type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify({
+        nickname: nickname,
+        email: email,
+        password: password,
+        fashion: fashion,
+      }),
+    });
+    return response;
+  } else {
+    alert("비밀번호 체크가 일치하지 않습니다.");
+  }
 }
 
 // 게시글 삭제
@@ -244,57 +288,63 @@ async function deleteArticle(url) {
   });
 
   if (response.status == 204) {
-    alert("게시글 삭제 완료!")
-    window.location.replace(`${frontend_base_url}/`)
-  } 
+    alert("게시글 삭제 완료!");
+    window.location.replace(`${frontend_base_url}/`);
+  }
 }
 
 // 댓글 수정
 async function updateComment(commentId, Comment) {
-  const urlParams = new URLSearchParams(window.location.search)
+  const urlParams = new URLSearchParams(window.location.search);
   const articleId = urlParams.get("article_id");
 
   let newComment = prompt("수정할 댓글을 입력하세요.", Comment);
 
-  if (newComment) { 
-      let token = localStorage.getItem("access");
+  if (newComment) {
+    let token = localStorage.getItem("access");
 
-      const response = await fetch(`${backend_base_url}/comments/${commentId}/`, {
-          headers: {
-              'content-type': 'application/json',
-              "Authorization": `Bearer ${token}`
-          },
-          method: 'PUT',
-          body: JSON.stringify({
-              "content": newComment
-          })
-      });
+    const response = await fetch(`${backend_base_url}/comments/${commentId}/`, {
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      method: "PUT",
+      body: JSON.stringify({
+        content: newComment,
+      }),
+    });
 
-      if (response.status == 200) {
-          alert("댓글 수정이 완료되었습니다!");
-          window.location.replace(`${frontend_base_url}/view/detailpage.html?article_id=${articleId}`)
-      }
+    if (response.status == 200) {
+      alert("댓글 수정이 완료되었습니다!");
+      window.location.replace(
+        `${frontend_base_url}/view/detailpage.html?article_id=${articleId}`
+      );
+    }
   } else {
-    window.location.replace(`${frontend_base_url}/view/detailpage.html?article_id=${articleId}`)
+    window.location.replace(
+      `${frontend_base_url}/view/detailpage.html?article_id=${articleId}`
+    );
   }
 }
 
 // 댓글 삭제
 async function deleteComment(commentId) {
-  const urlParams = new URLSearchParams(window.location.search)
+  const urlParams = new URLSearchParams(window.location.search);
   const articleId = urlParams.get("article_id");
 
-  let token = localStorage.getItem("access")
+  let token = localStorage.getItem("access");
   const response = await fetch(`${backend_base_url}/comments/${commentId}/`, {
     headers: {
-        'content-type': 'application/json',
-        'Authorization': `Bearer ${token}`
+      "content-type": "application/json",
+      Authorization: `Bearer ${token}`,
     },
-    method: 'DELETE',
-  })
+    method: "DELETE",
+  });
 
   if (response.status == 204) {
-    alert("댓글 삭제 완료!")
-    window.location.replace(`${frontend_base_url}/view/detailpage.html?article_id=${articleId}`)
-  } 
+    alert("댓글 삭제 완료!");
+    window.location.replace(
+      `${frontend_base_url}/view/detailpage.html?article_id=${articleId}`
+    );
+  }
 }

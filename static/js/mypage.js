@@ -24,9 +24,14 @@ window.onload = async function () {
   document.getElementById("profile-img").setAttribute("src", `${profileImg}`);
 
   //   패션
-  document.getElementById(
-    "profile-fashion"
-  ).innerText = `Fashion : ${profile.fashion}`;
+  if (profile.fashion) {
+    document.getElementById(
+      "profile-fashion"
+    ).innerText = `Fashion : ${profile.fashion}`;
+  } else {
+    document.getElementById("profile-fashion").innerText = `Fashion : None`;
+  }
+
   // 팔로워
   const follower = document.getElementById("profile-follower");
   follower.innerText = `Follower ${profile.followers.length}`;
