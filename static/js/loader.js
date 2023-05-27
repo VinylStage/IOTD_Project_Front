@@ -44,51 +44,6 @@ injectFooter();
 
 function articleList(articles, article_list) {
   articles.forEach((article) => {
-    // const newDiv = document.createElement("div");
-    // newDiv.setAttribute("class", "post-box")
-    // newDiv.setAttribute("onclick", `articleDetail(${article.id})`)
-
-    // const articleImage = document.createElement("img")
-    // if (article.image) {
-    //   articleImage.setAttribute("src", `${backend_base_url}${article.image}`)
-    // } else {
-    //   articleImage.setAttribute("src", "https://cdn11.bigcommerce.com/s-1812kprzl2/images/stencil/original/products/426/5082/no-image__12882.1665668288.jpg?c=2")
-    // }
-    // newDiv.appendChild(articleImage)
-
-    // const info = document.createElement("div")
-    // info.setAttribute("class","post-info")
-    // newDiv.appendChild(info)
-
-    // const profile = document.createElement("div")
-    // profile.setAttribute("class","post-profile")
-    // info.appendChild(profile)
-
-    // const profileDiv = document.createElement("div")
-    // profileDiv.setAttribute("class","post-img")
-    // profile.appendChild(profileDiv)
-
-    // const profileImage = document.createElement("img")
-    // profileImage.setAttribute("src","/static/img/mymymy.png")
-    // profileDiv.appendChild(profileImage)
-
-    // const writer = document.createElement("h3")
-    // writer.innerHTML = `${article.user}`
-    // profile.appendChild(writer)
-
-    // const like = document.createElement("div")
-    // like.setAttribute("class","likes")
-    // info.appendChild(like)
-
-    // const heart = document.createElement("i")
-    // heart.setAttribute("class","ri-heart-3-fill")
-    // like.appendChild(heart)
-
-    // const bookmark = document.createElement("i")
-    // bookmark.setAttribute("class","ri-bookmark-fill")
-    // like.appendChild(bookmark)
-    // article_list.appendChild(newDiv)
-
     if (article.image) {
       article_list.insertAdjacentHTML(
         "beforeend",
@@ -137,4 +92,16 @@ function articleList(articles, article_list) {
 
 function articleDetail(article_id) {
   window.location.href = `${frontend_base_url}/view/detailpage.html?article_id=${article_id}`;
+}
+
+function userProfile(user_id) {
+  window.location.href = `${frontend_base_url}/users/mypage.html?user_id=${user_id}`;
+}
+
+function moveFollow(user_id) {
+  window.location.href = `${frontend_base_url}/users/follow.html?user_id=${user_id}`;
+}
+
+function profileEdit() {
+  window.location.href = `${frontend_base_url}/users/editprofile.html`;
 }

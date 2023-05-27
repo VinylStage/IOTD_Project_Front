@@ -1,14 +1,19 @@
+const urlParams = new URLSearchParams(window.location.search);
+const userId = urlParams.get("user_id");
+
 async function handleFollows(e) {
-  console.log("버튼");
   const listWrap = document.getElementById("list-wrap");
   listWrap.innerHTML = "";
 
-  const follows = await getFollows(1);
+  const follows = await getFollows(userId);
 
   const followTitle = document.getElementById("follow-title");
   followTitle.innerText = `${follows.nickname}'s Followers List`;
 
   let users = follows.followers;
+  // 유저 id 기준으로 정렬(오름차순)
+  users.sort((a, b) => a.id - b.id);
+
   if (e.id == "followings") {
     users = follows.followings;
     followTitle.innerText = `${follows.nickname}'s Followings List`;
@@ -18,9 +23,10 @@ async function handleFollows(e) {
     if (user.profile_img) {
       profileImg = `${backend_base_url}${user.profile_img}`;
     }
+    console.log(user);
     listWrap.insertAdjacentHTML(
       "beforeend",
-      `<div class="list">
+      `<div class="list" onclick="userProfile(${user.id})">
     <div class="imgBx">
       <img src="${profileImg}" alt="" class="character" />
     </div>
