@@ -5,6 +5,7 @@ const no_image =
 
 let payload = localStorage.getItem("payload");
 let payload_parse = JSON.parse(payload);
+let token = localStorage.getItem("access");
 
 // 특정 유저의 팔로잉, 팔로워 가져오기
 async function getFollows(e) {
@@ -83,12 +84,8 @@ async function getAllArticles() {
 
 // 유저 정보 조회
 async function getUser() {
-  const payload = localStorage.getItem("payload");
-  const payload_parse = JSON.parse(payload);
-  let token = localStorage.getItem("access");
-
   const response = await fetch(
-    `${backend_base_url}/users/${payload_parse.user_id}/`,
+    `${backend_base_url}/users/profile/${payload_parse.user_id}/`,
     {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -134,11 +131,10 @@ function checkNotLogin() {
   }
 }
 
-async function createArticle(url) {
-  const urlParams = new URLSearchParams(url);
+async function createArticle() {
   const title = document.getElementById("title").value;
   const content = document.getElementById("content").value;
-  const image = document.getElementById("addimage").files[0];
+  const image = document.getElementById("image").files[0];
 
   const formdata = new FormData();
 
@@ -193,4 +189,24 @@ async function handleSignin() {
   });
 
   return response;
+}
+
+// 게시글 삭제
+async function deleteArticle(url) {
+  const urlParams = new URLSearchParams(url);
+  const articleId = urlParams.get("article_id");
+
+  let token = localStorage.getItem("access");
+  const response = await fetch(`${backend_base_url}/${articleId}/`, {
+    headers: {
+      "content-type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    method: "DELETE",
+  });
+
+  if (response.status == 204) {
+    alert("게시글 삭제 완료!");
+    window.location.replace(`${frontend_base_url}/`);
+  }
 }
