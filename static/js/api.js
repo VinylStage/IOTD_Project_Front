@@ -1,4 +1,4 @@
-const frontend_base_url = "http://127.0.0.1:5501";
+const frontend_base_url = "http://127.0.0.1:5500";
 const backend_base_url = "http://127.0.0.1:8000";
 const no_image =
   "https://usagi-post.com/wp-content/uploads/2020/05/no-image-found-360x250-1.png";
@@ -347,4 +347,45 @@ async function deleteComment(commentId) {
       `${frontend_base_url}/view/detailpage.html?article_id=${articleId}`
     );
   }
+}
+
+// 좋아요/좋아요 취소 기능
+async function articleLike(article_id) {
+  const response = await fetch(`${backend_base_url}/${article_id}/likes/`,{
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    method: "POST",
+  })
+
+  console.log(response)
+  if (response.status == 200){
+    document.getElementById(`likes(${article_id})`).setAttribute("style","color: red; display:flex;")
+    document.getElementById(`nolikes(${article_id})`).setAttribute("style","display:none;")
+  } else {
+    document.getElementById(`likes(${article_id})`).setAttribute("style","color: red; display: none;")
+    document.getElementById(`nolikes(${article_id})`).setAttribute("style","display: flex;")
+  }
+}
+
+// 팔로우/언팔로우 기능
+async function userFollow(article_id, user_id){
+  const response = await fetch(`${backend_base_url}/users/follow/${user_id}/`,{
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    method: "POST",
+  })
+
+  console.log(response)
+  if (response.status == 200) {
+    document.getElementById(`unfollow(${article_id}-${user_id})`).setAttribute("style", "display: none;")
+    document.getElementById(`follow(${article_id}-${user_id})`).setAttribute("style", "display:flex;")
+  } else if (response.status == 204) {
+    document.getElementById(`unfollow(${article_id}-${user_id})`).setAttribute("style", "display: flex;")
+    document.getElementById(`follow(${article_id}-${user_id})`).setAttribute("style", "display: none;")
+  } else {
+    alert("자기 자신은 팔로우 할 수 없습니다!")
+  }
+  window.location.reload()
 }
