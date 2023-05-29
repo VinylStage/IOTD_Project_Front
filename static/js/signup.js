@@ -1,3 +1,4 @@
+// 회원가입 버튼 클릭 시 불러오는 함수
 async function handleSigninButton() {
   const response = await handleSignin();
   if (response.status == 201) {
@@ -10,4 +11,5 @@ async function handleSigninButton() {
   }
 }
 
+// 로그인 되어있는지 체크하는 함수
 checkLogin();

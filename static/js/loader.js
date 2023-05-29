@@ -1,3 +1,4 @@
+// 헤더 불러오기
 async function injectHeader() {
   fetch("/nav/header.html")
     .then((response) => {
@@ -9,19 +10,15 @@ async function injectHeader() {
 
   let navbarHtml = await fetch("/nav/header.html");
   let data = await navbarHtml.text();
-  document.querySelector("header").innerHTML = data; //사용자님이 이거니?
+  document.querySelector("header").innerHTML = data;
 
-  const payload = localStorage.getItem("payload");
-  if (payload) {
-    const payload_parse = JSON.parse(payload);
-
+  if (payload_parse) {
     const intro = document.getElementById("intro");
     intro.innerHTML = `${payload_parse.nickname}님`;
 
     document
       .getElementById("my-page")
       .setAttribute("onclick", `userProfile(${payload_parse.user_id})`);
-
 
     loginbutton.style.display = "none";
   } else {
@@ -30,6 +27,7 @@ async function injectHeader() {
   }
 }
 
+// 푸터 불러오기
 async function injectFooter() {
   fetch("/nav/footer.html")
     .then((response) => {
@@ -47,6 +45,7 @@ async function injectFooter() {
 injectHeader();
 injectFooter();
 
+// 전체 게시글 불러오기
 async function articleList(articles, article_list, follows) {
   articles.forEach((article) => {
     let articleImg = `${no_image}`;
@@ -58,8 +57,6 @@ async function articleList(articles, article_list, follows) {
     if (article.profile_img) {
       profileImg = `${backend_base_url}${article.profile_img}`;
     }
-
-    
 
     article_list.insertAdjacentHTML(
       "beforeend",
@@ -82,40 +79,46 @@ async function articleList(articles, article_list, follows) {
     </div>`
     );
 
-    for (let i = 0 ; i < follows.followings.length ; i++){
-      if (article.user == follows.followings[i].id) {
-        document.getElementById(`unfollow(${article.id}-${article.user})`).setAttribute("style", "display: none")
-        document.getElementById(`unfollow(${article.id}-${article.user})`).setAttribute("style", "color: green; display: flex")
+    if (payload) {
+      for (let i = 0; i < follows.followings.length; i++) {
+        if (article.user == follows.followings[i].id) {
+          document
+            .getElementById(`unfollow(${article.id}-${article.user})`)
+            .setAttribute("style", "display: none");
+          document
+            .getElementById(`unfollow(${article.id}-${article.user})`)
+            .setAttribute("style", "color: green; display: flex");
+        }
       }
-    }
 
-    // 좋아요 누르면 빨간색 하트로 바뀌게 하기
-    article.likes.forEach((obj)=>{
-      if(payload_parse.user_id==obj) {
-        document.getElementById(`nolikes(${article.id})`).setAttribute("style", "display: none;")
-        document.getElementById(`likes(${article.id})`).setAttribute("style", "color: red; display: flex;")
-      }
-    })
-    
-    // 자기 자신에게는 팔로우 버튼 안보이게 하기
-    for (let i = 0 ; i < articles.length ; i++){
-      if (article.user == payload_parse.user_id) {
-        document.getElementById(`unfollow(${article.id}-${article.user})`).setAttribute("style", "display: none")
-        document.getElementById(`unfollow(${article.id}-${article.user})`).setAttribute("style", "display: none")
+      // 좋아요 누르면 빨간색 하트로 바뀌게 하기
+      article.likes.forEach((obj) => {
+        if (payload_parse.user_id == obj) {
+          document
+            .getElementById(`nolikes(${article.id})`)
+            .setAttribute("style", "display: none;");
+          document
+            .getElementById(`likes(${article.id})`)
+            .setAttribute("style", "color: red; display: flex;");
+        }
+      });
+
+      // 자기 자신에게는 팔로우 버튼 안보이게 하기
+      for (let i = 0; i < articles.length; i++) {
+        if (article.user == payload_parse.user_id) {
+          document
+            .getElementById(`unfollow(${article.id}-${article.user})`)
+            .setAttribute("style", "display: none");
+          document
+            .getElementById(`unfollow(${article.id}-${article.user})`)
+            .setAttribute("style", "display: none");
+        }
       }
     }
-    
   });
-  // articles.forEach((obj)=>{
-  //   if (obj.user == follows.followings[0].id) {
-  //     document.getElementById(`unfollow(${obj.id}-${obj.user})`).setAttribute("style", "display: none")
-  //     document.getElementById(`unfollow(${obj.id}-${obj.user})`).setAttribute("style", "color: red; display: flex")
-  //   }
-  // })
-
 }
 
-
+// 특정 html로 이동하는 함수 모음
 function articleDetail(article_id) {
   window.location.href = `${frontend_base_url}/view/detailpage.html?article_id=${article_id}`;
 }
