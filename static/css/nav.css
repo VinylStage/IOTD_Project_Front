@@ -40,11 +40,10 @@ a {
 }
 
 .foottainer {
-  max-width: 1170px;
   margin: auto;
   padding-top: 50px;
   border-top: 2px solid black;
-  /* width: 600px; */
+  width: 1500px;
 }
 
 .row {
@@ -64,6 +63,9 @@ ul {
 .footer-col {
   width: 25%;
   padding: 0 15px;
+  /* display: flex; */
+  justify-content: center;
+  
 }
 
 .footer-col h4 {
@@ -72,11 +74,10 @@ ul {
   text-transform: capitalize;
   margin-bottom: 20px;
   position: relative;
+  text-align: center;
 }
 
 .footer-col h4::before {
-  content: " ";
-  position: absolute;
   left: 0;
   bottom: -10px;
   background-color: black;
@@ -89,6 +90,7 @@ ul {
   color: black;
   font-weight: bold;
   margin-top: 20px;
+  text-align: center;
 }
 
 h5 {
@@ -96,4 +98,5 @@ h5 {
 }
 .footer-col ul li:not(:last-child) {
   margin-bottom: 10px;
+
 }

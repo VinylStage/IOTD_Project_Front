@@ -6,61 +6,37 @@
   /* color: white; */
 }
 
-/* body {
-  background-color: rgb(214, 170, 170);
-  background-position: center;
-  background-size: cover;
-  min-height: 100vh;
-  width: 100%;
-} */
-
+/* header */
 .header {
   height: 145px;
   text-align: center;
   border-bottom: 2px solid black;
   padding-bottom: 19px;
+  background-color: white;
 }
 
 .header_logo h1 {
   font: bold 40px "arial";
-  padding-top: 14px;
+  padding-top: 40px;
   letter-spacing: 2px;
-  margin-top: 20px;
   margin-bottom: 10px;
+  color: black;
 }
 
 .header_logo p {
   font: bold 12px "arial";
-  margin-top: -1px;
-}
-
-.header__gnb ul {
-  margin-top: 39px;
-}
-
-.header__gnb ul li {
-  display: inline-block;
-}
-
-.header__gnb ul li a {
-  display: block;
-  font: bold 14px "arial";
+  padding-top: 2px;
   color: black;
-  margin: 0px 16px;
-  letter-spacing: 1px;
 }
 
-/* .user {
+.user {
   float: right;
-  margin-right: 95px;
-} */
+  margin-right: 20px;
+  font-weight: bold;
+}
+
 
 /* 게시판부분 */
-
-html {
-  font-size: 10px;
-}
-
 ul,
 li {
   list-style: none;

@@ -41,39 +41,42 @@ window.onload = async function () {
   following.innerText = `Following ${profile.followings.length}`;
   following.setAttribute("onclick", `moveFollow(${userId})`);
 
-  // 유저 게시글 부분
-  const postBox = document.getElementsByClassName("main-posts")[0];
-  postBox.innerHTML = "";
-  console.log(profile);
-  if (profile.articles) {
-    profile.articles.forEach((article) => {
-      let articleImg = `${no_image}`;
-      if (article.image) {
-        articleImg = `${backend_base_url}${article.image}`;
-      }
-      postBox.insertAdjacentHTML(
-        "beforeend",
-        `<div class="post-box" onclick="articleDetail(${article.id})">
-    <img src="${articleImg}" alt="" />
+  const feed = document.getElementById("profile-feed")
+  feed.setAttribute("href", "/view/feed.html")
+  feed.innerText = "feed (Like/Follow)"
 
-    <div class="post-info">
-      <div class="post-profile">
-        <div class="post-img">
-          <img src="${profileImg}" alt="" />
-        </div>
-        <h3>${profile.nickname}</h3>
-      </div>
-      <!-- like, bookmark -->
-      <div class="likes">
-        <i class="ri-heart-3-fill"></i>
-        <!-- <span>49.4k</span> -->
-        <i class="ri-bookmark-fill"></i>
-      </div>
-    </div>
-  </div>`
-      );
-    });
-  } else {
-    postBox.innerHTML = "No articles available";
-  }
+  // 유저 게시글 부분
+  // const postBox = document.getElementsByClassName("main-posts")[0];
+  // postBox.innerHTML = "";
+  // console.log(profile);
+  // if (profile.articles) {
+  //   profile.articles.forEach((article) => {
+  //     let articleImg = `${no_image}`;
+  //     if (article.image) {
+  //       articleImg = `${backend_base_url}${article.image}`;
+  //     }
+  //     postBox.insertAdjacentHTML(
+  //       "beforeend",
+  //       `<div class="post-box" onclick="articleDetail(${article.id})">
+  //   <img src="${articleImg}" alt="" />
+
+  //   <div class="post-info">
+  //     <div class="post-profile">
+  //       <div class="post-img">
+  //         <img src="${profileImg}" alt="" />
+  //       </div>
+  //       <h3>${profile.nickname}</h3>
+  //     </div>
+  //     <!-- like, bookmark -->
+  //     <div class="likes">
+  //       <i class="ri-heart-3-fill"></i>
+  //       <i class="ri-bookmark-fill"></i>
+  //     </div>
+  //   </div>
+  // </div>`
+  //     );
+  //   });
+  // } else {
+  //   postBox.innerHTML = "No articles available";
+  // }
 };
