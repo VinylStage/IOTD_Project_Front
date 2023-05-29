@@ -6,6 +6,36 @@
   color: black;
 }
 
+/* header */
+.header {
+  height: 145px;
+  text-align: center;
+  border-bottom: 2px solid black;
+  padding-bottom: 19px;
+  background-color: white;
+}
+
+.header_logo h1 {
+  font: bold 40px "arial";
+  padding-top: 40px;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  color: black;
+}
+
+.header_logo p {
+  font: bold 12px "arial";
+  padding-top: 2px;
+  color: black;
+}
+
+.user {
+  float: right;
+  margin-right: 20px;
+  font-weight: bold;
+}
+
+
 .container {
   display: flex;
   justify-content: center;
