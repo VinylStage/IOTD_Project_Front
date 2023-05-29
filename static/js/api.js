@@ -1,3 +1,4 @@
+// js 전체적으로 활용되는 변수 선언
 const frontend_base_url = "http://127.0.0.1:5500";
 const backend_base_url = "http://127.0.0.1:8000";
 const no_image =
@@ -21,7 +22,6 @@ async function getFollows(e) {
 
 // 특정 유저의 프로필 정보 가져오기
 async function getProfile(e) {
-  console.log(e);
   const response = await fetch(`${backend_base_url}/users/profile/${e}/`);
 
   if (response.status == 200) {
@@ -118,7 +118,6 @@ async function getAllArticles() {
 
   if (response.status == 200) {
     const response_json = await response.json();
-    console.log(response_json);
     return response_json;
   } else {
     alert("불러오는 데 실패했습니다");
@@ -148,7 +147,6 @@ async function getUser() {
 // 상세 게시글 조회
 async function getArticle(articleId) {
   const response = await fetch(`${backend_base_url}/${articleId}/`);
-  console.log(response);
   if (response.status == 200) {
     response_json = await response.json();
     return response_json;
@@ -159,7 +157,6 @@ async function getArticle(articleId) {
 
 // 로그인 상태에서 로그인, 회원가입 페이지 접속 시 홈으로 이동하는 함수
 function checkLogin() {
-  const payload = localStorage.getItem("payload");
   if (payload) {
     window.location.replace(`${frontend_base_url}/`);
   }
@@ -167,7 +164,6 @@ function checkLogin() {
 
 // 비로그인 상태에서 글쓰기 페이지 접속 시 홈으로 이동하는 함수
 function checkNotLogin() {
-  const payload = localStorage.getItem("payload");
   if (payload == null) {
     alert("로그인이 필요합니다.");
     window.location.replace(`${frontend_base_url}/`);
@@ -185,8 +181,6 @@ async function createArticle() {
   formdata.append("title", title);
   formdata.append("content", content);
   formdata.append("image", image || "");
-
-  let token = localStorage.getItem("access");
 
   const response = await fetch(`${backend_base_url}/`, {
     method: "POST",
@@ -219,8 +213,6 @@ async function updateArticle(url) {
   formdata.append("content", content);
   formdata.append("image", image || "");
 
-  let token = localStorage.getItem("access");
-
   const response = await fetch(`${backend_base_url}/${articleId}/`, {
     method: "PUT",
     headers: {
@@ -228,7 +220,6 @@ async function updateArticle(url) {
     },
     body: formdata,
   });
-  console.log(response);
   if (response.status == 200) {
     alert("게시글 수정 완료!");
     window.location.replace(
@@ -278,7 +269,6 @@ async function deleteArticle(url) {
   const urlParams = new URLSearchParams(url);
   const articleId = urlParams.get("article_id");
 
-  let token = localStorage.getItem("access");
   const response = await fetch(`${backend_base_url}/${articleId}/`, {
     headers: {
       "content-type": "application/json",
@@ -301,8 +291,6 @@ async function updateComment(commentId, Comment) {
   let newComment = prompt("수정할 댓글을 입력하세요.", Comment);
 
   if (newComment) {
-    let token = localStorage.getItem("access");
-
     const response = await fetch(`${backend_base_url}/comments/${commentId}/`, {
       headers: {
         "content-type": "application/json",
@@ -331,8 +319,6 @@ async function updateComment(commentId, Comment) {
 async function deleteComment(commentId) {
   const urlParams = new URLSearchParams(window.location.search);
   const articleId = urlParams.get("article_id");
-
-  let token = localStorage.getItem("access");
   const response = await fetch(`${backend_base_url}/comments/${commentId}/`, {
     headers: {
       "content-type": "application/json",
@@ -349,43 +335,59 @@ async function deleteComment(commentId) {
   }
 }
 
-// 좋아요/좋아요 취소 기능
+// 좋아요, 좋아요 취소 기능
 async function articleLike(article_id) {
-  const response = await fetch(`${backend_base_url}/${article_id}/likes/`,{
+  const response = await fetch(`${backend_base_url}/${article_id}/likes/`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
     method: "POST",
-  })
+  });
 
-  console.log(response)
-  if (response.status == 200){
-    document.getElementById(`likes(${article_id})`).setAttribute("style","color: red; display:flex;")
-    document.getElementById(`nolikes(${article_id})`).setAttribute("style","display:none;")
+  if (response.status == 200) {
+    document
+      .getElementById(`likes(${article_id})`)
+      .setAttribute("style", "color: red; display:flex;");
+    document
+      .getElementById(`nolikes(${article_id})`)
+      .setAttribute("style", "display:none;");
+  } else if (response.status == 205) {
+    document
+      .getElementById(`likes(${article_id})`)
+      .setAttribute("style", "color: red; display: none;");
+    document
+      .getElementById(`nolikes(${article_id})`)
+      .setAttribute("style", "display: flex;");
   } else {
-    document.getElementById(`likes(${article_id})`).setAttribute("style","color: red; display: none;")
-    document.getElementById(`nolikes(${article_id})`).setAttribute("style","display: flex;")
+    alert("로그인 후 이용가능합니다.");
   }
 }
 
-// 팔로우/언팔로우 기능
-async function userFollow(article_id, user_id){
-  const response = await fetch(`${backend_base_url}/users/follow/${user_id}/`,{
+// 팔로우, 언팔로우 기능
+async function userFollow(article_id, user_id) {
+  const response = await fetch(`${backend_base_url}/users/follow/${user_id}/`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
     method: "POST",
-  })
+  });
 
-  console.log(response)
   if (response.status == 200) {
-    document.getElementById(`unfollow(${article_id}-${user_id})`).setAttribute("style", "display: none;")
-    document.getElementById(`follow(${article_id}-${user_id})`).setAttribute("style", "display:flex;")
+    document
+      .getElementById(`unfollow(${article_id}-${user_id})`)
+      .setAttribute("style", "display: none;");
+    document
+      .getElementById(`follow(${article_id}-${user_id})`)
+      .setAttribute("style", "display:flex;");
   } else if (response.status == 204) {
-    document.getElementById(`unfollow(${article_id}-${user_id})`).setAttribute("style", "display: flex;")
-    document.getElementById(`follow(${article_id}-${user_id})`).setAttribute("style", "display: none;")
+    document
+      .getElementById(`unfollow(${article_id}-${user_id})`)
+      .setAttribute("style", "display: flex;");
+    document
+      .getElementById(`follow(${article_id}-${user_id})`)
+      .setAttribute("style", "display: none;");
   } else {
-    alert("자기 자신은 팔로우 할 수 없습니다!")
+    alert("로그인 후 이용가능합니다.");
   }
-  window.location.reload()
+  window.location.reload();
 }

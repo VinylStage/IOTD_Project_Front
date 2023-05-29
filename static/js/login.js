@@ -1,27 +1,31 @@
+// 로그인 시 작동하는 함수
 async function handleLoginButton() {
-    const response = await handleLogin();
-    console.log(response);
+  const response = await handleLogin();
 
-    if (response.status == 200) {
-        const response_json = await response.json();
-        console.log(response_json);
+  if (response.status == 200) {
+    const response_json = await response.json();
 
-        localStorage.setItem("access", response_json.access);
-        localStorage.setItem("refresh", response_json.refresh);
+    localStorage.setItem("access", response_json.access);
+    localStorage.setItem("refresh", response_json.refresh);
 
-        const base64Url = response_json.access.split(".")[1];
-        const base64 = base64Url.replace(/-/g, "+");
-        const jsonPayload = decodeURIComponent(
-        atob(base64).split("").map(function (c) {
-            return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);}).join(""));
+    const base64Url = response_json.access.split(".")[1];
+    const base64 = base64Url.replace(/-/g, "+");
+    const jsonPayload = decodeURIComponent(
+      atob(base64)
+        .split("")
+        .map(function (c) {
+          return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+        })
+        .join("")
+    );
 
-        localStorage.setItem("payload", jsonPayload);
-        alert("환영합니다!");
-        window.location.replace(`${frontend_base_url}/`);
-    } else {
-        alert("회원정보가 일치하지 않습니다!");
-    }
+    localStorage.setItem("payload", jsonPayload);
+    alert("환영합니다!");
+    window.location.replace(`${frontend_base_url}/`);
+  } else {
+    alert("회원정보가 일치하지 않습니다!");
+  }
 }
 
+// 로그인 되어있는지 체크하는 함수
 checkLogin();
-

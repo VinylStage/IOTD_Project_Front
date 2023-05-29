@@ -1,6 +1,7 @@
 const urlParams = new URLSearchParams(window.location.search);
 const userId = urlParams.get("user_id");
 
+// 팔로우 정보 불러와서 정렬하는 함수
 async function handleFollows(e) {
   const listWrap = document.getElementById("list-wrap");
   listWrap.innerHTML = "";
@@ -23,7 +24,6 @@ async function handleFollows(e) {
     if (user.profile_img) {
       profileImg = `${backend_base_url}${user.profile_img}`;
     }
-    console.log(user);
     listWrap.insertAdjacentHTML(
       "beforeend",
       `<div class="list" onclick="userProfile(${user.id})">
@@ -40,6 +40,7 @@ async function handleFollows(e) {
   });
 }
 
+// 창이 로드되면 팔로우 함수 호출
 window.onload = async function () {
   const followerBox = document.getElementById("followers");
   handleFollows(followerBox);

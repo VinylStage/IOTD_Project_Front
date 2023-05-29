@@ -1,3 +1,4 @@
+// 피드 불러오기
 async function handleFeed(e) {
   const postWrap = document.getElementsByClassName("main-posts")[0];
   postWrap.innerHTML = "";
@@ -17,7 +18,6 @@ async function handleFeed(e) {
     if (feed.profile_img) {
       profileImg = `${backend_base_url}${feed.profile_img}`;
     }
-    console.log(feed);
 
     postWrap.insertAdjacentHTML(
       "beforeend",
@@ -43,6 +43,7 @@ async function handleFeed(e) {
   });
 }
 
+// 창이 로드되면 피드 불러오는 함수 호출
 window.onload = function () {
   const feedBox = document.getElementById("follow-btn");
   handleFeed(feedBox);

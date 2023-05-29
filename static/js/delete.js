@@ -1,3 +1,4 @@
+// 회원 삭제 기능
 function handleDelete() {
   const sureValue = document.getElementById("sure-box").value;
   if (sureValue.toLowerCase() === "yes") {

@@ -1,8 +1,5 @@
+// 창이 로드되면 내 프로필 정보를 불러옴
 window.onload = async function () {
-  const payload = localStorage.getItem("payload");
-  const payload_parse = JSON.parse(payload);
-  let token = localStorage.getItem("access");
-
   const my_profile_edit = await fetch(
     `${backend_base_url}/users/profile/${payload_parse.user_id}/`,
     {
@@ -24,17 +21,11 @@ window.onload = async function () {
 };
 
 async function handleUpdateButton() {
-  const payload = localStorage.getItem("payload");
-  const payload_parse = JSON.parse(payload);
-  let token = localStorage.getItem("access");
-
   const profileimage = document.getElementById("profileimage").files[0];
   const nickname = document.getElementById("nickname").value;
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
   const fashion = document.getElementsByClassName("Categories")[0].value;
-
-  console.log(fashion);
 
   const formdata = new FormData();
 
